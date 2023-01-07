@@ -9,6 +9,7 @@ const server = express();
 const PORT = 5000;
 
 server.use(cors());
+server.use(express.json());
 
 server.use(SignUp);
 server.use(Tweets);
