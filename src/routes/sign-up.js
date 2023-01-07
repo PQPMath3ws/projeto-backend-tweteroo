@@ -10,7 +10,7 @@ router.post("/sign-up", (req, res, next) => {
     if (!username || !avatar) return next();
     //add validation here
     users.push({username, avatar});
-    return res.status(200).send("OK");
+    return res.status(201).send("OK");
 });
 
 export default router;
