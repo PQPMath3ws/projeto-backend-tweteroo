@@ -14,6 +14,16 @@ router.get("/tweets", (req, res) => {
     return res.status(200).send(last10tweets);
 });
 
+router.get("/tweets/:username", (req, res) => {
+    if (tweets.length === 0) return res.status(200).send(tweets);
+    const { username } = req.params;
+    let usernameTweets = JSON.parse(JSON.stringify(tweets)).sort((tweet_a, tweet_b) => tweet_a.id > tweet_b.id ? -1 : 1).filter(tweet => tweet.username === username);
+    usernameTweets.forEach(t => {
+        delete t.id;
+    });
+    return res.status(200).send(usernameTweets);
+});
+
 router.post("/tweets", (req, res, next) => {
     if (req.headers["content-type"] !== "application/json") return next();
     const { tweet, username } = req.body;
