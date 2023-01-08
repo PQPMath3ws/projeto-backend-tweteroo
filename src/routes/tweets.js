@@ -26,8 +26,10 @@ router.get("/tweets/:username", (req, res) => {
 
 router.post("/tweets", (req, res, next) => {
     if (req.headers["content-type"] !== "application/json") return next();
-    const { tweet, username } = req.body;
-    if (!tweet || !username) return next();
+    let { tweet, username } = req.body;
+    if (!tweet) return next();
+    if (!username) username = req.headers["user"];
+    if (!username) return next();
     const userFind = users.find(user => user.username === username);
     if (!userFind) return next();
     let sorteredTweets = JSON.parse(JSON.stringify(tweets)).sort((tweet_a, tweet_b) => tweet_a.id > tweet_b.id ? -1 : 1);
