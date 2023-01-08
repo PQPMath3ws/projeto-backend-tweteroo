@@ -1,3 +1,4 @@
+/*
 const setError = (code, message) => ({code, message});
 
 const errors = {
@@ -5,7 +6,16 @@ const errors = {
     404: setError(404, "Rota não encontrada na API do servidor!"),
     405: setError(405, "Método não permitido!"),
     415: setError(415, "Content-type inválido!"),
-    422: setError(422, "Todos os campos na requisição são obrigatórios"),
+    422: setError(422, "Todos os campos na requisição são obrigatórios!"),
+};
+*/
+
+const errors = {
+    401: "Usuário não autorizado a publicar!",
+    404: "Rota não encontrada na API do servidor!",
+    405: "Método não permitido!",
+    415: "Content-type inválido!",
+    422: "Todos os campos na requisição são obrigatórios!",
 };
 
 export default errors;
