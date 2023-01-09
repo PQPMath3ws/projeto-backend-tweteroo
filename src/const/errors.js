@@ -17,11 +17,11 @@ const errors = {
     400: "Usuário já cadastrado!",
     400.1: "Somente imagens JPG/JPEG, PNG e GIF são aceitas.",
     400.2: "Informe uma página válida!",
+    400.3: "Todos os campos na requisição são obrigatórios!",
     401: "Usuário não autorizado a publicar!",
     404: "Rota não encontrada na API do servidor!",
     405: "Método não permitido!",
     415: "Content-type inválido!",
-    422: "Todos os campos na requisição são obrigatórios!",
 };
 
 export default errors;

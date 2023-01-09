@@ -37,7 +37,7 @@ router.all("/sign-up", (req, res) => {
     if (req.method !== "POST") return res.status(405).send(errors[405]);
     if (req.headers["content-type"] !== "application/json") return res.status(415).send(errors[415]);
     const { username, avatar } = req.body;
-    if (!username || !avatar) return res.status(422).send(errors[422]);
+    if (!username || !avatar) return res.status(400).send(errors["400.3"]);
     const findedUsername = users.find(user => user.username === username);
     if (findedUsername) return res.status(400).send(errors[400]);
     try {
@@ -53,9 +53,9 @@ router.all("/tweets", (req, res) => {
     if (req.method !== "POST") return res.status(405).send(errors[405]);
     if (req.headers["content-type"] !== "application/json") return res.status(415).send(errors[415]);
     let { tweet, username } = req.body;
-    if (!tweet) return res.status(422).send(errors[422]);
+    if (!tweet) return res.status(400).send(errors["400.3"]);
     if (!username) username = req.headers["user"];
-    if (!username) return res.status(422).send(errors[422]);
+    if (!username) return res.status(400).send(errors["400.3"]);
     return res.status(401).send(errors[401]);
 });
 
