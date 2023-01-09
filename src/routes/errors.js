@@ -58,7 +58,8 @@ router.all("/tweets", (req, res) => {
 });
 
 router.all("*", (req, res) => {
-    return res.status(errors[404].code).send(errors[404]);
+    //return res.status(errors[404].code).send(errors[404]);
+    return res.status(404).send(errors[404]);
 });
 
 export default router;
