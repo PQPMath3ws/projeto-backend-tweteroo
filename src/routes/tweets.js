@@ -29,7 +29,7 @@ router.get("/tweets/:USERNAME", (req, res) => {
 });
 
 router.post("/tweets", (req, res, next) => {
-    if (req.headers["content-type"] !== "application/json") return next();
+    //if (req.headers["content-type"] !== "application/json") return next();
     let { tweet, username } = req.body;
     if (!tweet) return next();
     if (!username) username = req.headers["user"];
