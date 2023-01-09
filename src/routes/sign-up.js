@@ -5,7 +5,7 @@ import users from "../const/users.js";
 const router = express.Router();
 
 router.post("/sign-up", (req, res, next) => {
-    //if (req.headers["content-type"] !== "application/json") return next();
+    if (req.headers["content-type"] !== "application/json") return next();
     const { username, avatar } = req.body;
     if (!username || !avatar) return next();
     if (username && typeof username !== "string") return next();
