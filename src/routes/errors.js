@@ -29,6 +29,7 @@ router.all("/tweets", (req, res) => {
     if (!tweet) return res.status(errors[422].code).send(errors[422]);
     if (!username) username = req.headers["User"];
     if (!username) return res.status(errors[422].code).send(errors[422]);
+    if (tweet && typeof tweet !== "string") res.status(errors["400.3"].code).send(errors["400.3"]);
     return res.status(errors[401].code).send(errors[401]);
 });
 */
