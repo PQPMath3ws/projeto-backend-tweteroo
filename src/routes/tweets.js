@@ -21,7 +21,7 @@ router.get("/tweets", (req, res, next) => {
 router.get("/tweets/:USERNAME", (req, res) => {
     if (tweets.length === 0) return res.status(200).send(tweets);
     const { USERNAME } = req.params;
-    let usernameTweets = JSON.parse(JSON.stringify(tweets)).sort((tweet_a, tweet_b) => tweet_a.id > tweet_b.id ? -1 : 1).filter(tweet => tweet.username === USERNAME);
+    let usernameTweets = JSON.parse(JSON.stringify(tweets)).sort((tweet_a, tweet_b) => tweet_a.id > tweet_b.id ? -1 : 1).filter(tweet => tweet.username.toLowerCase() === USERNAME.toLowerCase());
     usernameTweets.forEach(t => {
         delete t.id;
     });
