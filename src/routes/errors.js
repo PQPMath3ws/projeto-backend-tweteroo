@@ -22,6 +22,7 @@ router.all("/sign-up", (req, res) => {
 });
 
 router.all("/tweets", (req, res) => {
+    if (req.method === "GET") if (req.query["page"] && (Number.isNaN(parseInt(req.query["page"])) || req.query["page"] <= 0)) return res.status(errors["400.2"].code).send(errors["400.2"]);;
     if (req.method !== "POST") return res.status(errors[405].code).send(errors[405]);
     if (req.headers["content-type"] !== "application/json") return res.status(errors[415].code).send(errors[415]);
     let { tweet, username } = req.body;
@@ -48,6 +49,7 @@ router.all("/sign-up", (req, res) => {
 });
 
 router.all("/tweets", (req, res) => {
+    if (req.method === "GET") if (req.query["page"] && (Number.isNaN(parseInt(req.query["page"])) || req.query["page"] <= 0)) return res.status(400).send(errors["400.2"]);;
     if (req.method !== "POST") return res.status(405).send(errors[405]);
     if (req.headers["content-type"] !== "application/json") return res.status(415).send(errors[415]);
     let { tweet, username } = req.body;

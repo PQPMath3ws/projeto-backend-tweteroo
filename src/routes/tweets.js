@@ -5,9 +5,13 @@ import tweets from "../const/tweets.js";
 
 const router = express.Router();
 
-router.get("/tweets", (req, res) => {
+router.get("/tweets", (req, res, next) => {
+    const { page } = req.query;
+    if (page && (Number.isNaN(parseInt(page)) || page <= 0)) return next();
     if (tweets.length === 0) return res.status(200).send(tweets);
-    let last10tweets = JSON.parse(JSON.stringify(tweets)).sort((tweet_a, tweet_b) => tweet_a.id > tweet_b.id ? -1 : 1).slice(0, 10);
+    let last10tweets = JSON.parse(JSON.stringify(tweets)).sort((tweet_a, tweet_b) => tweet_a.id > tweet_b.id ? -1 : 1);
+    if (!page) last10tweets = last10tweets.slice(0, 10);
+    else last10tweets = last10tweets.slice((page - 1) * 10, page * 10);
     last10tweets.forEach(t => {
         delete t.id;
     });
