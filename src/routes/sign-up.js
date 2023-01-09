@@ -8,7 +8,7 @@ router.post("/sign-up", (req, res, next) => {
     if (req.headers["content-type"] !== "application/json") return next();
     const { username, avatar } = req.body;
     if (!username || !avatar) return next();
-    if (username && /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(username)) return next();
+    if (username && /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~0-9]/.test(username)) return next();
     const findedUsername = users.find(user => user.username === username);
     if (findedUsername) return next();
     try {

@@ -11,7 +11,7 @@ router.all("/sign-up", (req, res) => {
     if (req.headers["content-type"] !== "application/json") return res.status(errors[415].code).send(errors[415]);
     const { username, avatar } = req.body;
     if (!username || !avatar) return res.status(errors[422].code).send(errors[422]);
-    if (username && /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(username)) res.status(errors["400.4"].code).send(errors["400.4"]);
+    if (username && /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~0-9]/.test(username)) res.status(errors["400.4"].code).send(errors["400.4"]);
     const findedUsername = users.find(user => user.username === username);
     if (findedUsername) return res.status(errors[400].code).send(errors[400]);
     try {
@@ -40,7 +40,7 @@ router.all("/sign-up", (req, res) => {
     if (req.headers["content-type"] !== "application/json") return res.status(415).send(errors[415]);
     const { username, avatar } = req.body;
     if (!username || !avatar) return res.status(400).send(errors["400.3"]);
-    if (username && /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(username)) return res.status(400).send(errors["400.5"]);
+    if (username && /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~0-9]/.test(username)) return res.status(400).send(errors["400.5"]);
     const findedUsername = users.find(user => user.username === username);
     if (findedUsername) return res.status(400).send(errors[400]);
     try {
