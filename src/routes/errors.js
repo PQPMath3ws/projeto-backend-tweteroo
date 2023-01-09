@@ -56,6 +56,7 @@ router.all("/tweets", (req, res) => {
     if (!tweet) return res.status(400).send(errors["400.3"]);
     if (!username) username = req.headers["user"];
     if (!username) return res.status(400).send(errors["400.3"]);
+    if (username && typeof username !== "string") return res.status(400).send(errors["400.4"]);
     return res.status(401).send(errors[401]);
 });
 
